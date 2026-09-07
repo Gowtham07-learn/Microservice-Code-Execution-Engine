@@ -17,3 +17,7 @@ class PluginRegistry(ABC):
     @abstractmethod
     def list_plugins(self) -> list[LanguagePlugin]:
         """Return all registered plugins."""
+
+    def list_supported_languages(self) -> list[str]:
+        """Return registered language ids without exposing plugin instances."""
+        return sorted(plugin.language() for plugin in self.list_plugins())
